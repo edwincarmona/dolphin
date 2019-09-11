@@ -5,7 +5,13 @@
  */
 package mx.carmona.principal;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.File;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -18,15 +24,12 @@ import mx.sat.cfd33.Comprobante;
  */
 public class Inicio {
     public static void main(String[] args) throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(Comprobante.class);
-
-        Unmarshaller unmarshaller = jc.createUnmarshaller();
-        File xml = new File("C:\\Users\\Sergio Flores\\Documents\\eds\\dolphin\\pruebas\\AET131112RQ2_P_P_0000000504.xml");
-        Comprobante config = (Comprobante) unmarshaller.unmarshal(xml);
-
-        Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, "file:///C:\\Users\\Sergio Flores\\Documents\\eds\\dolphin\\FirstXSD.xml");
-        marshaller.marshal(config, System.out);
+        
+        ReaderWindow wind = new ReaderWindow();
+        wind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        wind.setLocationRelativeTo(null);
+        wind.pack();
+        wind.setVisible(true);
+        
     }
 }
