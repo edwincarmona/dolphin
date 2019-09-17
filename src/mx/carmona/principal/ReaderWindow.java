@@ -4,14 +4,12 @@
  */
 package mx.carmona.principal;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
 
@@ -21,6 +19,7 @@ import javax.xml.bind.JAXBException;
  */
 public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
 
+    private File[] files;
     /**
      * Creates new form SFormRate
      */
@@ -41,7 +40,7 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         chooser.setMultiSelectionEnabled(true);
         chooser.showOpenDialog(this);
         
-        File[] files = chooser.getSelectedFiles();
+        files = chooser.getSelectedFiles();
         
         jtArea.setText("");
         for (File file: files) {
@@ -50,7 +49,9 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         if(files.length >= 2) {
             
         }
-        
+    }
+    
+    private void process() {
         Utils u = new Utils();
         
         try {
@@ -59,10 +60,6 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         catch (JAXBException ex) {
             Logger.getLogger(ReaderWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    private void process() {
-    
     }
 
     /**

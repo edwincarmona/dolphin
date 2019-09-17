@@ -1,7 +1,7 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.8-b130911.1802 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.8-b130911.1802 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
 // Generado el: 2019.09.12 a las 12:50:50 PM CDT 
 //
 
@@ -473,20 +473,20 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "addenda"
 })
 @XmlRootElement(name = "Comprobante")
-public class Comprobante {
+public class Comprobante32 {
 
     @XmlElement(name = "Emisor", required = true)
-    protected Comprobante.Emisor emisor;
+    protected Comprobante32.Emisor emisor;
     @XmlElement(name = "Receptor", required = true)
-    protected Comprobante.Receptor receptor;
+    protected Comprobante32.Receptor receptor;
     @XmlElement(name = "Conceptos", required = true)
-    protected Comprobante.Conceptos conceptos;
+    protected Comprobante32.Conceptos conceptos;
     @XmlElement(name = "Impuestos", required = true)
-    protected Comprobante.Impuestos impuestos;
+    protected Comprobante32.Impuestos impuestos;
     @XmlElement(name = "Complemento")
-    protected Comprobante.Complemento complemento;
+    protected Comprobante32.Complemento complemento;
     @XmlElement(name = "Addenda")
-    protected Comprobante.Addenda addenda;
+    protected Comprobante32.Addenda addenda;
     @XmlAttribute(name = "version", required = true)
     protected String version;
     @XmlAttribute(name = "serie")
@@ -542,7 +542,7 @@ public class Comprobante {
      *     {@link Comprobante.Emisor }
      *     
      */
-    public Comprobante.Emisor getEmisor() {
+    public Comprobante32.Emisor getEmisor() {
         return emisor;
     }
 
@@ -554,7 +554,7 @@ public class Comprobante {
      *     {@link Comprobante.Emisor }
      *     
      */
-    public void setEmisor(Comprobante.Emisor value) {
+    public void setEmisor(Comprobante32.Emisor value) {
         this.emisor = value;
     }
 
@@ -566,7 +566,7 @@ public class Comprobante {
      *     {@link Comprobante.Receptor }
      *     
      */
-    public Comprobante.Receptor getReceptor() {
+    public Comprobante32.Receptor getReceptor() {
         return receptor;
     }
 
@@ -578,7 +578,7 @@ public class Comprobante {
      *     {@link Comprobante.Receptor }
      *     
      */
-    public void setReceptor(Comprobante.Receptor value) {
+    public void setReceptor(Comprobante32.Receptor value) {
         this.receptor = value;
     }
 
@@ -590,7 +590,7 @@ public class Comprobante {
      *     {@link Comprobante.Conceptos }
      *     
      */
-    public Comprobante.Conceptos getConceptos() {
+    public Comprobante32.Conceptos getConceptos() {
         return conceptos;
     }
 
@@ -602,7 +602,7 @@ public class Comprobante {
      *     {@link Comprobante.Conceptos }
      *     
      */
-    public void setConceptos(Comprobante.Conceptos value) {
+    public void setConceptos(Comprobante32.Conceptos value) {
         this.conceptos = value;
     }
 
@@ -614,7 +614,7 @@ public class Comprobante {
      *     {@link Comprobante.Impuestos }
      *     
      */
-    public Comprobante.Impuestos getImpuestos() {
+    public Comprobante32.Impuestos getImpuestos() {
         return impuestos;
     }
 
@@ -626,7 +626,7 @@ public class Comprobante {
      *     {@link Comprobante.Impuestos }
      *     
      */
-    public void setImpuestos(Comprobante.Impuestos value) {
+    public void setImpuestos(Comprobante32.Impuestos value) {
         this.impuestos = value;
     }
 
@@ -638,7 +638,7 @@ public class Comprobante {
      *     {@link Comprobante.Complemento }
      *     
      */
-    public Comprobante.Complemento getComplemento() {
+    public Comprobante32.Complemento getComplemento() {
         return complemento;
     }
 
@@ -650,7 +650,7 @@ public class Comprobante {
      *     {@link Comprobante.Complemento }
      *     
      */
-    public void setComplemento(Comprobante.Complemento value) {
+    public void setComplemento(Comprobante32.Complemento value) {
         this.complemento = value;
     }
 
@@ -662,7 +662,7 @@ public class Comprobante {
      *     {@link Comprobante.Addenda }
      *     
      */
-    public Comprobante.Addenda getAddenda() {
+    public Comprobante32.Addenda getAddenda() {
         return addenda;
     }
 
@@ -674,7 +674,7 @@ public class Comprobante {
      *     {@link Comprobante.Addenda }
      *     
      */
-    public void setAddenda(Comprobante.Addenda value) {
+    public void setAddenda(Comprobante32.Addenda value) {
         this.addenda = value;
     }
 
@@ -1495,7 +1495,7 @@ public class Comprobante {
     public static class Conceptos {
 
         @XmlElement(name = "Concepto", required = true)
-        protected List<Comprobante.Conceptos.Concepto> concepto;
+        protected List<Comprobante32.Conceptos.Concepto> concepto;
 
         /**
          * Gets the value of the concepto property.
@@ -1519,9 +1519,9 @@ public class Comprobante {
          * 
          * 
          */
-        public List<Comprobante.Conceptos.Concepto> getConcepto() {
+        public List<Comprobante32.Conceptos.Concepto> getConcepto() {
             if (concepto == null) {
-                concepto = new ArrayList<Comprobante.Conceptos.Concepto>();
+                concepto = new ArrayList<Comprobante32.Conceptos.Concepto>();
             }
             return this.concepto;
         }
@@ -1662,11 +1662,11 @@ public class Comprobante {
             @XmlElement(name = "InformacionAduanera")
             protected List<TInformacionAduanera> informacionAduanera;
             @XmlElement(name = "CuentaPredial")
-            protected Comprobante.Conceptos.Concepto.CuentaPredial cuentaPredial;
+            protected Comprobante32.Conceptos.Concepto.CuentaPredial cuentaPredial;
             @XmlElement(name = "ComplementoConcepto")
-            protected Comprobante.Conceptos.Concepto.ComplementoConcepto complementoConcepto;
+            protected Comprobante32.Conceptos.Concepto.ComplementoConcepto complementoConcepto;
             @XmlElement(name = "Parte")
-            protected List<Comprobante.Conceptos.Concepto.Parte> parte;
+            protected List<Comprobante32.Conceptos.Concepto.Parte> parte;
             @XmlAttribute(name = "cantidad", required = true)
             protected BigDecimal cantidad;
             @XmlAttribute(name = "unidad", required = true)
@@ -1717,7 +1717,7 @@ public class Comprobante {
              *     {@link Comprobante.Conceptos.Concepto.CuentaPredial }
              *     
              */
-            public Comprobante.Conceptos.Concepto.CuentaPredial getCuentaPredial() {
+            public Comprobante32.Conceptos.Concepto.CuentaPredial getCuentaPredial() {
                 return cuentaPredial;
             }
 
@@ -1729,7 +1729,7 @@ public class Comprobante {
              *     {@link Comprobante.Conceptos.Concepto.CuentaPredial }
              *     
              */
-            public void setCuentaPredial(Comprobante.Conceptos.Concepto.CuentaPredial value) {
+            public void setCuentaPredial(Comprobante32.Conceptos.Concepto.CuentaPredial value) {
                 this.cuentaPredial = value;
             }
 
@@ -1741,7 +1741,7 @@ public class Comprobante {
              *     {@link Comprobante.Conceptos.Concepto.ComplementoConcepto }
              *     
              */
-            public Comprobante.Conceptos.Concepto.ComplementoConcepto getComplementoConcepto() {
+            public Comprobante32.Conceptos.Concepto.ComplementoConcepto getComplementoConcepto() {
                 return complementoConcepto;
             }
 
@@ -1753,7 +1753,7 @@ public class Comprobante {
              *     {@link Comprobante.Conceptos.Concepto.ComplementoConcepto }
              *     
              */
-            public void setComplementoConcepto(Comprobante.Conceptos.Concepto.ComplementoConcepto value) {
+            public void setComplementoConcepto(Comprobante32.Conceptos.Concepto.ComplementoConcepto value) {
                 this.complementoConcepto = value;
             }
 
@@ -1779,9 +1779,9 @@ public class Comprobante {
              * 
              * 
              */
-            public List<Comprobante.Conceptos.Concepto.Parte> getParte() {
+            public List<Comprobante32.Conceptos.Concepto.Parte> getParte() {
                 if (parte == null) {
-                    parte = new ArrayList<Comprobante.Conceptos.Concepto.Parte>();
+                    parte = new ArrayList<Comprobante32.Conceptos.Concepto.Parte>();
                 }
                 return this.parte;
             }
@@ -2362,7 +2362,7 @@ public class Comprobante {
         @XmlElement(name = "ExpedidoEn")
         protected TUbicacion expedidoEn;
         @XmlElement(name = "RegimenFiscal", required = true)
-        protected List<Comprobante.Emisor.RegimenFiscal> regimenFiscal;
+        protected List<Comprobante32.Emisor.RegimenFiscal> regimenFiscal;
         @XmlAttribute(name = "rfc", required = true)
         protected String rfc;
         @XmlAttribute(name = "nombre")
@@ -2438,9 +2438,9 @@ public class Comprobante {
          * 
          * 
          */
-        public List<Comprobante.Emisor.RegimenFiscal> getRegimenFiscal() {
+        public List<Comprobante32.Emisor.RegimenFiscal> getRegimenFiscal() {
             if (regimenFiscal == null) {
-                regimenFiscal = new ArrayList<Comprobante.Emisor.RegimenFiscal>();
+                regimenFiscal = new ArrayList<Comprobante32.Emisor.RegimenFiscal>();
             }
             return this.regimenFiscal;
         }
@@ -2639,9 +2639,9 @@ public class Comprobante {
     public static class Impuestos {
 
         @XmlElement(name = "Retenciones")
-        protected Comprobante.Impuestos.Retenciones retenciones;
+        protected Comprobante32.Impuestos.Retenciones retenciones;
         @XmlElement(name = "Traslados")
-        protected Comprobante.Impuestos.Traslados traslados;
+        protected Comprobante32.Impuestos.Traslados traslados;
         @XmlAttribute(name = "totalImpuestosRetenidos")
         protected BigDecimal totalImpuestosRetenidos;
         @XmlAttribute(name = "totalImpuestosTrasladados")
@@ -2655,7 +2655,7 @@ public class Comprobante {
          *     {@link Comprobante.Impuestos.Retenciones }
          *     
          */
-        public Comprobante.Impuestos.Retenciones getRetenciones() {
+        public Comprobante32.Impuestos.Retenciones getRetenciones() {
             return retenciones;
         }
 
@@ -2667,7 +2667,7 @@ public class Comprobante {
          *     {@link Comprobante.Impuestos.Retenciones }
          *     
          */
-        public void setRetenciones(Comprobante.Impuestos.Retenciones value) {
+        public void setRetenciones(Comprobante32.Impuestos.Retenciones value) {
             this.retenciones = value;
         }
 
@@ -2679,7 +2679,7 @@ public class Comprobante {
          *     {@link Comprobante.Impuestos.Traslados }
          *     
          */
-        public Comprobante.Impuestos.Traslados getTraslados() {
+        public Comprobante32.Impuestos.Traslados getTraslados() {
             return traslados;
         }
 
@@ -2691,7 +2691,7 @@ public class Comprobante {
          *     {@link Comprobante.Impuestos.Traslados }
          *     
          */
-        public void setTraslados(Comprobante.Impuestos.Traslados value) {
+        public void setTraslados(Comprobante32.Impuestos.Traslados value) {
             this.traslados = value;
         }
 
@@ -2787,7 +2787,7 @@ public class Comprobante {
         public static class Retenciones {
 
             @XmlElement(name = "Retencion", required = true)
-            protected List<Comprobante.Impuestos.Retenciones.Retencion> retencion;
+            protected List<Comprobante32.Impuestos.Retenciones.Retencion> retencion;
 
             /**
              * Gets the value of the retencion property.
@@ -2811,9 +2811,9 @@ public class Comprobante {
              * 
              * 
              */
-            public List<Comprobante.Impuestos.Retenciones.Retencion> getRetencion() {
+            public List<Comprobante32.Impuestos.Retenciones.Retencion> getRetencion() {
                 if (retencion == null) {
-                    retencion = new ArrayList<Comprobante.Impuestos.Retenciones.Retencion>();
+                    retencion = new ArrayList<Comprobante32.Impuestos.Retenciones.Retencion>();
                 }
                 return this.retencion;
             }
@@ -2951,7 +2951,7 @@ public class Comprobante {
         public static class Traslados {
 
             @XmlElement(name = "Traslado", required = true)
-            protected List<Comprobante.Impuestos.Traslados.Traslado> traslado;
+            protected List<Comprobante32.Impuestos.Traslados.Traslado> traslado;
 
             /**
              * Gets the value of the traslado property.
@@ -2975,9 +2975,9 @@ public class Comprobante {
              * 
              * 
              */
-            public List<Comprobante.Impuestos.Traslados.Traslado> getTraslado() {
+            public List<Comprobante32.Impuestos.Traslados.Traslado> getTraslado() {
                 if (traslado == null) {
-                    traslado = new ArrayList<Comprobante.Impuestos.Traslados.Traslado>();
+                    traslado = new ArrayList<Comprobante32.Impuestos.Traslados.Traslado>();
                 }
                 return this.traslado;
             }

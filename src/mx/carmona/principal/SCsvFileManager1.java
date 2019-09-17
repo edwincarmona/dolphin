@@ -31,9 +31,9 @@ public class SCsvFileManager1 {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header
-    private static final String FILE_HEADER = "Clave,Item,Unidad,Necesidad,Stock,BackOrder";
+    private static final String FILE_HEADER = "RfcEmisor,RfcReceptor,Fecha,MetodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto";
 
-    public static String writeCsvFile(ArrayList<String> lAtributos) {
+    public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
         FileWriter fileWriter = null;
         DecimalFormat df = new DecimalFormat("#.00000000");
@@ -43,7 +43,7 @@ public class SCsvFileManager1 {
             JFileChooser fileChooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Delimitado por comas .csv", "csv");
             fileChooser.setFileFilter(filter);
-            fileChooser.setSelectedFile(new File("explosion.csv"));
+            fileChooser.setSelectedFile(new File("resultado.csv"));
             
             iSelection = fileChooser.showSaveDialog(fileChooser);
  
@@ -67,24 +67,29 @@ public class SCsvFileManager1 {
 
             //Write a new Ingredient object list to the CSV file
             
-            Iterator it = lAtributos.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry) it.next();
-                SDataExplotionMaterialsEntry ingredient = (SDataExplotionMaterialsEntry) pair.getValue();
+            for (ExportData renglon : lAtributos) {
+//                RfcEmisor,RfcReceptor,Fecha,MétodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto
+                fileWriter.append(renglon.getRfcEmisor());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getRfcReceptor());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getFecha());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getMetodoDePago());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getUsoCfdi());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getUuid());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getTotal()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getTotalImpuestosTrasladados()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getConcepto());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getImporteConcepto()));
                 
-                fileWriter.append(ingredient.getDbmsItemKey());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(ingredient.getDbmsItem());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(ingredient.getDbmsItemUnitSymbol());
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(df.format(ingredient.getGrossReq()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(df.format(ingredient.getAvailable()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(df.format(ingredient.getBackorder()));
                 fileWriter.append(NEW_LINE_SEPARATOR);
-                it.remove(); // avoids a ConcurrentModificationException
             }
         }
         catch (Exception e) {
