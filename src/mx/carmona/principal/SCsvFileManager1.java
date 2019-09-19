@@ -5,19 +5,12 @@
  */
 package mx.carmona.principal;
 
-import java.io.BufferedReader;
+import java.awt.HeadlessException;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -36,7 +29,7 @@ public class SCsvFileManager1 {
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
         FileWriter fileWriter = null;
-        DecimalFormat df = new DecimalFormat("#.00000000");
+        DecimalFormat df = new DecimalFormat("##.00");
         int iSelection = -1;
         
         try {
@@ -92,10 +85,10 @@ public class SCsvFileManager1 {
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }
         }
-        catch (Exception e) {
+        catch (HeadlessException | IOException e) {
             sResult += "Error al escribir el archivo";
-            e.printStackTrace();
-        } finally {
+        }
+        finally {
 
             try {
                 if (iSelection == JFileChooser.APPROVE_OPTION && sResult.isEmpty()) {
@@ -105,7 +98,6 @@ public class SCsvFileManager1 {
             }
             catch (IOException e) {
                 sResult += "Error al cerrar el archivo";
-                e.printStackTrace();
             }
         }
         

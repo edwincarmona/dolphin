@@ -800,7 +800,7 @@ public class Comprobante33 {
      */
     public String getVersion() {
         if (version == null) {
-            return "3.3";
+            return null;
         } else {
             return version;
         }
