@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import mx.sat.cfd33.Comprobante33;
 import mx.sat.cfd32.Comprobante32;
+import mx.sat.cfd33.Comprobante33.Complemento;
 
 /**
  *
@@ -66,12 +67,15 @@ public class Utils {
     }
     
     private ArrayList<ExportData> comprobante33ToData(Comprobante33 comprobante) {
-        ArrayList<ExportData> data = new ArrayList<>();
+        ArrayList<ExportData> data;
         
         ExportData renglon = new ExportData();
         renglon.setRfcEmisor(comprobante.getEmisor().getRfc());
+        renglon.setEmisor(comprobante.getEmisor().getNombre());
         renglon.setRfcReceptor(comprobante.getReceptor().getRfc());
+        renglon.setReceptor(comprobante.getReceptor().getNombre());
         renglon.setFecha(comprobante.getFecha().toString());
+        renglon.setTipoDeComprobante(Lector.getTipoComprobante(comprobante.getTipoDeComprobante()));
         renglon.setMetodoDePago(comprobante.getMetodoPago() == null ? "-" : comprobante.getMetodoPago().value());
         renglon.setTotal(comprobante.getTotal().doubleValue());
         renglon.setTotalImpuestosTrasladados(comprobante.getImpuestos() == null 
@@ -79,20 +83,7 @@ public class Utils {
                                                 comprobante.getImpuestos().getTotalImpuestosTrasladados().doubleValue());
         renglon.setUsoCfdi(comprobante.getReceptor().getUsoCFDI().value());
         
-        if (comprobante.getComplemento().size() > 0) {
-            renglon.setUuid(((ElementNSImpl)comprobante.getComplemento().get(0).getAny().get(1)).getAttribute("UUID"));
-        }
-        else {
-            renglon.setUuid("-");
-        }
-        
-        for (Comprobante33.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
-            ExportData renglonAux = renglon.clone();
-            renglonAux.setConcepto(concepto.getDescripcion());
-            renglonAux.setImporteConcepto(concepto.getImporte().doubleValue());
-            
-            data.add(renglonAux);
-        }
+        data = Lector.leerPorTipo(comprobante, renglon);
         
         return data;
     }
@@ -109,8 +100,7 @@ public class Utils {
                                                 ? 0d :
                                                 comprobante.getImpuestos().getTotalImpuestosTrasladados().doubleValue());
         renglon.setUsoCfdi("--");
-        renglon.setUuid(comprobante.getComplemento().getAny().get(0).toString());
-        
+        renglon.setUuid(comprobante.getComplemento() == null ? "" : comprobante.getComplemento().getAny().get(0).toString());
         
         for (Comprobante32.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
             ExportData renglonAux = renglon.clone();

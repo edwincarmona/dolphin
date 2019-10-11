@@ -24,7 +24,10 @@ public class SCsvFileManager1 {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header
-    private static final String FILE_HEADER = "RfcEmisor,RfcReceptor,Fecha,MetodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto";
+    private static final String FILE_HEADER = "RfcEmisor,Emisor,RfcReceptor,Receptor,Fecha,"
+            + "MetodoPago,TipoComprobante,Uso,"
+            + "UUID,Total,TotalImptras,cantidad,concepto,Unitario,"
+            + "importeConcepto,CfdiRelacionado";
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
@@ -53,7 +56,7 @@ public class SCsvFileManager1 {
             fileWriter = new FileWriter(fileName);
 
             //Write the CSV file header
-            fileWriter.append(FILE_HEADER.toString());
+            fileWriter.append(FILE_HEADER);
 
             //Add a new line separator after the header
             fileWriter.append(NEW_LINE_SEPARATOR);
@@ -64,11 +67,17 @@ public class SCsvFileManager1 {
 //                RfcEmisor,RfcReceptor,Fecha,MétodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto
                 fileWriter.append(renglon.getRfcEmisor());
                 fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getEmisor());
+                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getRfcReceptor());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getReceptor());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getMetodoDePago());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getTipoDeComprobante());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getUsoCfdi());
                 fileWriter.append(COMMA_DELIMITER);
@@ -78,9 +87,15 @@ public class SCsvFileManager1 {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getTotalImpuestosTrasladados()));
                 fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getCantidad()));
+                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getConcepto());
                 fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getValorUnitario()));
+                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getImporteConcepto()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getUuidRelacionado());
                 
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }
