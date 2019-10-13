@@ -25,9 +25,10 @@ public class SCsvFileManager1 {
 
     //CSV file header
     private static final String FILE_HEADER = "RfcEmisor,Emisor,RfcReceptor,Receptor,Fecha,"
-            + "MetodoPago,TipoComprobante,Uso,"
-            + "UUID,Total,TotalImptras,cantidad,concepto,Unitario,"
-            + "importeConcepto,CfdiRelacionado";
+            + "MetodoPago,TipoComprobante,Uso,UUID,SubTotal,"
+            + "Descuento,Total,TotalImptras,cantidad,concepto,"
+            + "Unitario,importeConcepto,CfdiRelacionado,saldoAnterior,pagado,"
+            + "nuevoSaldo,metodoPagoDR,Parcialidad";
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
@@ -67,11 +68,11 @@ public class SCsvFileManager1 {
 //                RfcEmisor,RfcReceptor,Fecha,MétodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto
                 fileWriter.append(renglon.getRfcEmisor());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getEmisor());
+                fileWriter.append(renglon.getEmisor().replace(',', ' '));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getRfcReceptor());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getReceptor());
+                fileWriter.append(renglon.getReceptor().replace(',', ' '));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
                 fileWriter.append(COMMA_DELIMITER);
@@ -83,19 +84,33 @@ public class SCsvFileManager1 {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getUuid());
                 fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getSubTotal()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getDescuento()));
+                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getTotal()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getTotalImpuestosTrasladados()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getCantidad()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getConcepto());
+                fileWriter.append(renglon.getConcepto().replace(',', ' '));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getValorUnitario()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(df.format(renglon.getImporteConcepto()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getUuidRelacionado());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getImpSaldoAnterior()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getImpPagado()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(df.format(renglon.getImpSaldoInsoluto()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getMetodoDePagoDR());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getParcialidad() + "");
                 
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }

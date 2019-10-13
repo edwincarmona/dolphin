@@ -25,10 +25,10 @@ public class Lector {
             return Lector.leerIngreso(comprobante, renglon);
         }
         else if (tdc.equals(CTipoDeComprobante.E)) {
-            return null;
+            return Lector.leerEgreso(comprobante, renglon);
         }
         else if (tdc.equals(CTipoDeComprobante.N)) {
-            return null;
+            return Lector.leerNomina(comprobante, renglon);
         }
         
         return null;
@@ -36,11 +36,37 @@ public class Lector {
     
     public static ArrayList<ExportData> leerIngreso(Comprobante33 comprobante, ExportData renglon) {
         ArrayList<ExportData> data = new ArrayList<>();
-        if (comprobante.getComplemento().size() > 0) {
-            renglon.setUuid(((ElementNSImpl)comprobante.getComplemento().get(0).getAny().get(1)).getAttribute("UUID"));
+        for (Comprobante33.Complemento comp : comprobante.getComplemento()) {
+            for (Object any : comp.getAny()) {
+                ElementNSImpl elComplemento = (ElementNSImpl) any;
+                if (elComplemento.getLocalName().equals("TimbreFiscalDigital")) {
+                    renglon.setUuid(elComplemento.getAttribute("UUID"));
+                }
+            }
         }
-        else {
-            renglon.setUuid("-");
+        
+        for (Comprobante33.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
+            ExportData renglonAux = renglon.clone();
+            renglonAux.setCantidad(concepto.getCantidad().doubleValue());
+            renglonAux.setConcepto(concepto.getDescripcion());
+            renglonAux.setValorUnitario(concepto.getValorUnitario().doubleValue());
+            renglonAux.setImporteConcepto(concepto.getImporte().doubleValue());
+            
+            data.add(renglonAux);
+        }
+        
+        return data;
+    }
+        
+    public static ArrayList<ExportData> leerEgreso(Comprobante33 comprobante, ExportData renglon) {
+        ArrayList<ExportData> data = new ArrayList<>();
+        for (Comprobante33.Complemento comp : comprobante.getComplemento()) {
+            for (Object any : comp.getAny()) {
+                ElementNSImpl elComplemento = (ElementNSImpl) any;
+                if (elComplemento.getLocalName().equals("TimbreFiscalDigital")) {
+                    renglon.setUuid(elComplemento.getAttribute("UUID"));
+                }
+            }
         }
         
         for (Comprobante33.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
@@ -67,13 +93,51 @@ public class Lector {
                 }
                 else if (elComplemento.getLocalName().equals("Pagos")) {
                     for (int i = 0; i < elComplemento.getChildNodes().getLength(); i++) {
-                        System.out.println(elComplemento.getChildNodes().item(i).getAttributes().getNamedItem("NomBancoOrdExt"));
+                        if (elComplemento.getChildNodes().item(i).getAttributes() == null) {
+                            continue;
+                        }
                         renglon.setUuidRelacionado(elComplemento.getChildNodes().
                                             item(i).getChildNodes().item(0).
                                             getAttributes().getNamedItem("IdDocumento").
                                             getNodeValue());
+                        renglon.setImpSaldoAnterior(Double.parseDouble(elComplemento.getChildNodes().
+                                            item(i).getChildNodes().item(0).
+                                            getAttributes().getNamedItem("ImpSaldoAnt").
+                                            getNodeValue()));
+                        renglon.setImpPagado(Double.parseDouble(elComplemento.getChildNodes().
+                                            item(i).getChildNodes().item(0).
+                                            getAttributes().getNamedItem("ImpPagado").
+                                            getNodeValue()));
+                        renglon.setImpSaldoInsoluto(Double.parseDouble(elComplemento.getChildNodes().
+                                            item(i).getChildNodes().item(0).
+                                            getAttributes().getNamedItem("ImpSaldoInsoluto").
+                                            getNodeValue()));
+                        renglon.setMetodoDePagoDR(elComplemento.getChildNodes().
+                                            item(i).getChildNodes().item(0).
+                                            getAttributes().getNamedItem("MetodoDePagoDR").
+                                            getNodeValue());
+                        renglon.setParcialidad(Integer.parseInt(elComplemento.getChildNodes().
+                                            item(i).getChildNodes().item(0).
+                                            getAttributes().getNamedItem("NumParcialidad").
+                                            getNodeValue()));
                     }
                 } 
+            }
+        }
+        
+        data.add(renglon);
+        return data;
+    }
+    
+    public static ArrayList<ExportData> leerNomina(Comprobante33 comprobante, ExportData renglon) {
+        ArrayList<ExportData> data = new ArrayList<>();
+        
+        for (Comprobante33.Complemento comp : comprobante.getComplemento()) {
+            for (Object any : comp.getAny()) {
+                ElementNSImpl elComplemento = (ElementNSImpl) any;
+                if (elComplemento.getLocalName().equals("TimbreFiscalDigital")) {
+                    renglon.setUuid(elComplemento.getAttribute("UUID"));
+                }
             }
         }
         
@@ -93,6 +157,9 @@ public class Lector {
         }
         else if (tcomp.equals(CTipoDeComprobante.N)) {
             return "N - Nómina";
+        }
+        else if (tcomp.equals(CTipoDeComprobante.T)) {
+            return "T - Traslado";
         }
         
         return "";

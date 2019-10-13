@@ -22,10 +22,21 @@ public class ExportData  implements Cloneable{
     protected String uuidRelacionado;
     protected double cantidad;
     protected double total;
+    protected double subTotal;
+    protected double descuento;
     protected double totalImpuestosTrasladados;
+    protected double impSaldoAnterior;
+    protected double impPagado;
+    protected double impSaldoInsoluto;
     protected String concepto;
     protected double importeConcepto;
     protected double valorUnitario;
+    protected String metodoDePagoDR;
+    protected int parcialidad;
+
+    public ExportData() {
+        this.concepto = "";
+    }
 
     public String getRfcEmisor() {
         return rfcEmisor;
@@ -114,6 +125,22 @@ public class ExportData  implements Cloneable{
         this.total = total;
     }
     
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+    
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+    
     public double getCantidad() {
         return cantidad;
     }
@@ -153,6 +180,47 @@ public class ExportData  implements Cloneable{
     public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
+
+    public double getImpSaldoAnterior() {
+        return impSaldoAnterior;
+    }
+
+    public void setImpSaldoAnterior(double impSaldoAnterior) {
+        this.impSaldoAnterior = impSaldoAnterior;
+    }
+
+    public double getImpPagado() {
+        return impPagado;
+    }
+
+    public void setImpPagado(double impPagado) {
+        this.impPagado = impPagado;
+    }
+
+    public double getImpSaldoInsoluto() {
+        return impSaldoInsoluto;
+    }
+
+    public void setImpSaldoInsoluto(double impSaldoInsoluto) {
+        this.impSaldoInsoluto = impSaldoInsoluto;
+    }
+
+    public String getMetodoDePagoDR() {
+        return metodoDePagoDR;
+    }
+
+    public void setMetodoDePagoDR(String MetodoDePagoDR) {
+        this.metodoDePagoDR = MetodoDePagoDR;
+    }
+
+    public int getParcialidad() {
+        return parcialidad;
+    }
+
+    public void setParcialidad(int parcialidad) {
+        this.parcialidad = parcialidad;
+    }
+    
     
     @Override
     public ExportData clone(){

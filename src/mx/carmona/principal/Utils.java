@@ -77,6 +77,8 @@ public class Utils {
         renglon.setFecha(comprobante.getFecha().toString());
         renglon.setTipoDeComprobante(Lector.getTipoComprobante(comprobante.getTipoDeComprobante()));
         renglon.setMetodoDePago(comprobante.getMetodoPago() == null ? "-" : comprobante.getMetodoPago().value());
+        renglon.setSubTotal(comprobante.getSubTotal().doubleValue());
+        renglon.setDescuento(comprobante.getDescuento() == null ? 0d : comprobante.getDescuento().doubleValue());
         renglon.setTotal(comprobante.getTotal().doubleValue());
         renglon.setTotalImpuestosTrasladados(comprobante.getImpuestos() == null 
                                                 ? 0d :
