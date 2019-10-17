@@ -1,7 +1,7 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.8-b130911.1802 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantacin de la referencia de enlace (JAXB) XML v2.2.8-b130911.1802 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Todas las modificaciones realizadas en este archivo se perderan si se vuelve a compilar el esquema de origen. 
 // Generado el: 2019.09.12 a las 12:50:50 PM CDT 
 //
 
@@ -16,7 +16,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * Tipo definido para expresar información aduanera
+ * Tipo definido para expresar informacion aduanera
  * 
  * <p>Clase Java para t_InformacionAduanera complex type.
  * 

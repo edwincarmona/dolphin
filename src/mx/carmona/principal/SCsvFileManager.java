@@ -18,17 +18,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Edwin Carmona
  */
-public class SCsvFileManager1 {
+public class SCsvFileManager {
     //Delimiter used in CSV file
     private static final String COMMA_DELIMITER = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header
     private static final String FILE_HEADER = "RfcEmisor,Emisor,RfcReceptor,Receptor,Fecha,"
+            + "FormaDePago,cfdiRelacionados,tipoRelacion,"
             + "MetodoPago,TipoComprobante,Uso,UUID,SubTotal,"
             + "Descuento,Total,TotalImptras,cantidad,concepto,"
-            + "Unitario,importeConcepto,CfdiRelacionado,saldoAnterior,pagado,"
-            + "nuevoSaldo,metodoPagoDR,Parcialidad";
+            + "Unitario,importeConcepto,PagoCfdiRelacionado,saldoAnterior,pagado,"
+            + "nuevoSaldo,metodoPagoDR,Parcialidad,cfdiRelacionado,tipoRelacion";
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
@@ -76,7 +77,13 @@ public class SCsvFileManager1 {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
                 fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getFormaDePago());
+                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getMetodoDePago());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getCfdiRelacionadosNc());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(renglon.getTipoRelacion());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getTipoDeComprobante());
                 fileWriter.append(COMMA_DELIMITER);

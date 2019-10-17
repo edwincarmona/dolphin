@@ -16,10 +16,13 @@ public class ExportData  implements Cloneable{
     protected String receptor;
     protected String fecha;
     protected String metodoDePago;
+    protected String formaDePago;
     protected String tipoDeComprobante;
     protected String usoCfdi;
     protected String uuid;
     protected String uuidRelacionado;
+    protected String cfdiRelacionadosNc;
+    protected String tipoRelacion;
     protected double cantidad;
     protected double total;
     protected double subTotal;
@@ -84,7 +87,14 @@ public class ExportData  implements Cloneable{
     public void setMetodoDePago(String metodoDePago) {
         this.metodoDePago = metodoDePago;
     }
-    
+
+    public String getFormaDePago() {
+        return formaDePago;
+    }
+
+    public void setFormaDePago(String formaDePago) {
+        this.formaDePago = formaDePago;
+    }
     public String getTipoDeComprobante() {
         return tipoDeComprobante;
     }
@@ -115,6 +125,22 @@ public class ExportData  implements Cloneable{
 
     public void setUuidRelacionado(String uuidRelacionado) {
         this.uuidRelacionado = uuidRelacionado;
+    }
+
+    public String getCfdiRelacionadosNc() {
+        return cfdiRelacionadosNc;
+    }
+
+    public void setCfdiRelacionadosNc(String cfdiRelacionadosNc) {
+        this.cfdiRelacionadosNc = cfdiRelacionadosNc;
+    }
+
+    public String getTipoRelacion() {
+        return tipoRelacion;
+    }
+
+    public void setTipoRelacion(String tipoRelacion) {
+        this.tipoRelacion = tipoRelacion;
     }
 
     public double getTotal() {

@@ -9,6 +9,7 @@ import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.util.ArrayList;
 import mx.sat.cfd33.CTipoDeComprobante;
 import mx.sat.cfd33.Comprobante33;
+import mx.sat.cfd33.Comprobante33.CfdiRelacionados.CfdiRelacionado;
 
 /**
  *
@@ -21,10 +22,7 @@ public class Lector {
         if (tdc.equals(CTipoDeComprobante.P)) {
             return Lector.leerPago(comprobante, renglon);
         }
-        else if (tdc.equals(CTipoDeComprobante.I)) {
-            return Lector.leerIngreso(comprobante, renglon);
-        }
-        else if (tdc.equals(CTipoDeComprobante.E)) {
+        else if (tdc.equals(CTipoDeComprobante.I) || tdc.equals(CTipoDeComprobante.E)) {
             return Lector.leerEgreso(comprobante, renglon);
         }
         else if (tdc.equals(CTipoDeComprobante.N)) {
@@ -66,6 +64,15 @@ public class Lector {
                 if (elComplemento.getLocalName().equals("TimbreFiscalDigital")) {
                     renglon.setUuid(elComplemento.getAttribute("UUID"));
                 }
+            }
+        }
+        
+        if (comprobante.getCfdiRelacionados() != null) {
+            renglon.setTipoRelacion(Lector.getTipoDeRelacion(comprobante.getCfdiRelacionados().getTipoRelacion()));
+            renglon.setCfdiRelacionadosNc("");
+            
+            for (CfdiRelacionado cfdiRel : comprobante.getCfdiRelacionados().getCfdiRelacionado()) {
+                renglon.setCfdiRelacionadosNc( cfdiRel.getUUID() + "__" + renglon.getCfdiRelacionadosNc());
             }
         }
         
@@ -164,4 +171,39 @@ public class Lector {
         
         return "";
     }
+    
+    public static String getTipoDeRelacion(String tRelacion) {
+//        01	Nota de crédito de los documentos relacionados
+//        02	Nota de débito de los documentos relacionados
+//        03	Devolución de mercancía sobre facturas o traslados previos
+//        04	Sustitución de los CFDI previos
+//        05	Traslados de mercancias facturados previamente
+//        06	Factura generada por los traslados previos
+//        07	CFDI por aplicación de anticipo
+        if (tRelacion.equals("01")) {
+            return tRelacion + " - Nota de crédito de los documentos relacionados";
+        }
+        else if (tRelacion.equals("02")) {
+            return tRelacion + " - Nota de débito de los documentos relacionados";
+        }
+        else if (tRelacion.equals("03")) {
+            return tRelacion + " - Devolución de mercancía sobre facturas o traslados previos";
+        }
+        else if (tRelacion.equals("04")) {
+            return tRelacion + " - Sustitución de los CFDI previos";
+        }
+        else if (tRelacion.equals("05")) {
+            return tRelacion + " - Traslados de mercancias facturados previamente";
+        }
+        else if (tRelacion.equals("06")) {
+            return tRelacion + " - Factura generada por los traslados previos";
+        }
+        else if (tRelacion.equals("07")) {
+            return tRelacion + " - CFDI por aplicación de anticipo";
+        }
+        
+        return "";
+    }
+    
+    
 }
