@@ -53,11 +53,13 @@ public class SCsvFileManager {
             File fileName = fileChooser.getSelectedFile();
             
             if (fileName == null) {
+                sResult = "Error al guardar el archivo";
                 return "Error al guardar el archivo";
             }
             else {
                 String fn = fileName.getName();
-                if (!fn.substring(fn.lastIndexOf("."), fn.length()).toLowerCase().equals(".csv")){
+                if (! fn.substring(fn.lastIndexOf("."), fn.length()).toLowerCase().equals(".csv")) {
+                    sResult = "Error al guardar el archivo";
                     return "Error al guardar el archivo";
                 }
             }
