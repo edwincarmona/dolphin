@@ -39,6 +39,20 @@ public class ExportData  implements Cloneable{
 
     public ExportData() {
         this.concepto = "";
+        this.rfcEmisor = "";
+        this.rfcReceptor = "";
+        this.emisor = "";
+        this.receptor = "";
+        this.fecha = "";
+        this.metodoDePago = "";
+        this.formaDePago = "";
+        this.tipoDeComprobante = "";
+        this.usoCfdi = "";
+        this.uuid = "";
+        this.uuidRelacionado = "";
+        this.cfdiRelacionadosNc = "";
+        this.tipoRelacion = "";
+        this.metodoDePagoDR = "";
     }
 
     public String getRfcEmisor() {

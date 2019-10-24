@@ -7,9 +7,12 @@ package mx.carmona.principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
 
@@ -19,7 +22,7 @@ import javax.xml.bind.JAXBException;
  */
 public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
 
-    private File[] files;
+    private ArrayList<File> files;
     /**
      * Creates new form SFormRate
      */
@@ -38,16 +41,25 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo .xml", "xml");
         chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
+        int option = chooser.showOpenDialog(this);
         
-        files = chooser.getSelectedFiles();
+        if (option == JFileChooser.APPROVE_OPTION) {
+           File[] filesTemp = chooser.getSelectedFiles();
         
-        jtArea.setText("");
-        for (File file: files) {
-            jtArea.setText(file.getName() + "\n" + jtArea.getText());
+            jtArea.setText("");
+            files = new ArrayList<>();
+            for (File file: filesTemp) {
+                String fileName = file.getName();
+                if (! fileName.substring(fileName.lastIndexOf("."), fileName.length()).toLowerCase().equals(".xml")) {
+                    continue;
+                }
+
+                jtArea.setText(file.getName() + "\n" + jtArea.getText());
+                files.add(file);
+            }
         }
-        if(files.length >= 2) {
-            
+        else if (option == JFileChooser.CANCEL_OPTION) {
+            System.out.println("canceled");
         }
     }
     
@@ -55,6 +67,12 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         Utils u = new Utils();
         
         try {
+            if (files.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "No se han seleccionado "
+                        + "archivos o los archivos seleccionados no son válidos", "Error", ERROR_MESSAGE);
+                return;
+            }
+            
             u.procesarXmls(files);
         }
         catch (JAXBException ex) {

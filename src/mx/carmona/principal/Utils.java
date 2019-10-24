@@ -5,7 +5,6 @@
  */
 package mx.carmona.principal;
 
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,7 +13,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import mx.sat.cfd33.Comprobante33;
 import mx.sat.cfd32.Comprobante32;
-import mx.sat.cfd33.Comprobante33.Complemento;
 
 /**
  *
@@ -22,7 +20,7 @@ import mx.sat.cfd33.Comprobante33.Complemento;
  */
 public class Utils {
     
-    public void procesarXmls(File[] files) throws JAXBException {
+    public void procesarXmls(ArrayList<File> files) throws JAXBException {
         ArrayList<ExportData> data;
         ArrayList<ExportData> allData = new ArrayList<>();
         for (File file: files) {
@@ -117,7 +115,12 @@ public class Utils {
     }
     
     private void crearSalida(ArrayList<ExportData> datos) {
-        SCsvFileManager.writeCsvFile(datos);
-        JOptionPane.showMessageDialog(null, "Operación finalizada.");
+        String res = SCsvFileManager.writeCsvFile(datos);
+        if (res.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operación finalizada.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, res);
+        }
     }
 }
