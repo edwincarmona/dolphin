@@ -27,8 +27,8 @@ public class SCsvFileManager {
     private static final String FILE_HEADER = "RfcEmisor,Emisor,RfcReceptor,Receptor,Fecha,"
             + "FormaDePago,MetodoPago,cfdiRelacionados,tipoRelacion,"
             + "TipoComprobante,Uso,UUID,SubTotal,"
-            + "Descuento,Total,TotalImptras,cantidad,concepto,"
-            + "Unitario,importeConcepto,PagoCfdiRelacionado,saldoAnterior,pagado,"
+            + "Descuento,Total,TotalImptras,concepto(cantidad-concepto-valorUn-importeConcepto),"
+            + "PagoCfdiRelacionado,saldoAnterior,pagado,"
             + "nuevoSaldo,metodoPagoDR,Parcialidad,cfdiRelacionado,tipoRelacion";
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
@@ -108,13 +108,7 @@ public class SCsvFileManager {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(monto.format(renglon.getTotalImpuestosTrasladados()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(cantidad.format(renglon.getCantidad()));
-                fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getConcepto().replace(',', ' '));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(monto.format(renglon.getValorUnitario()));
-                fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(monto.format(renglon.getImporteConcepto()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getUuidRelacionado());
                 fileWriter.append(COMMA_DELIMITER);

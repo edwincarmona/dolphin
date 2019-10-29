@@ -44,14 +44,15 @@ public class Lector {
         }
         
         for (Comprobante33.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
-            ExportData renglonAux = renglon.clone();
-            renglonAux.setCantidad(concepto.getCantidad().doubleValue());
-            renglonAux.setConcepto(concepto.getDescripcion());
-            renglonAux.setValorUnitario(concepto.getValorUnitario().doubleValue());
-            renglonAux.setImporteConcepto(concepto.getImporte().doubleValue());
+//            ExportData renglonAux = renglon.clone();
+            String renglonCadena = "(" + concepto.getCantidad().doubleValue() + " - " +
+                                    concepto.getDescripcion() + " - " + concepto.getValorUnitario().doubleValue() +
+                                    " - " + concepto.getImporte().doubleValue() + ")";
             
-            data.add(renglonAux);
+            renglon.setConcepto(renglonCadena);
         }
+        
+        data.add(renglon);
         
         return data;
     }
@@ -77,14 +78,15 @@ public class Lector {
         }
         
         for (Comprobante33.Conceptos.Concepto concepto : comprobante.getConceptos().getConcepto()) {
-            ExportData renglonAux = renglon.clone();
-            renglonAux.setCantidad(concepto.getCantidad().doubleValue());
-            renglonAux.setConcepto(concepto.getDescripcion());
-            renglonAux.setValorUnitario(concepto.getValorUnitario().doubleValue());
-            renglonAux.setImporteConcepto(concepto.getImporte().doubleValue());
+//            ExportData renglonAux = renglon.clone();
+            String renglonCadena = "(" + concepto.getCantidad().doubleValue() + " - " +
+                                    concepto.getDescripcion() + " - " + concepto.getValorUnitario().doubleValue() +
+                                    " - " + concepto.getImporte().doubleValue() + ")";
             
-            data.add(renglonAux);
+            renglon.setConcepto(renglon.getConcepto() + renglonCadena);
         }
+        
+        data.add(renglon);
         
         return data;
     }
