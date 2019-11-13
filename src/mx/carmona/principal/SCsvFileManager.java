@@ -24,12 +24,12 @@ public class SCsvFileManager {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header
-    private static final String FILE_HEADER = "RfcEmisor,Emisor,RfcReceptor,Receptor,Fecha,"
-            + "FormaDePago,MetodoPago,cfdiRelacionados,tipoRelacion,"
-            + "TipoComprobante,Uso,UUID,SubTotal,"
-            + "Descuento,Total,TotalImptras,concepto(cantidad-concepto-valorUn-importeConcepto),"
-            + "PagoCfdiRelacionado,saldoAnterior,pagado,"
-            + "nuevoSaldo,metodoPagoDR,Parcialidad,cfdiRelacionado,tipoRelacion";
+    private static final String FILE_HEADER = "RFC del emisor,Emisor,RFC del receptor,Receptor,Fecha,"
+            + "Forma de pago,Metodo de pago,CFDI Relacionados NC,Tipo de relacion,"
+            + "Tipo de comprobante,Uso CFDI,UUID,SubTotal,"
+            + "Descuento,Total,Total Imptos trasladados,Concepto(cantidad-concepto-valorUnitario-importeConcepto),"
+            + "CFDI Relacionado De Pago,Saldo anterior,Pagado,"
+            + "Nuevo Saldo,Metodo Pago DR,Parcialidad,CFDI Relacionado,Tipo de Relacion";
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";

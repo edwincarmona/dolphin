@@ -108,8 +108,6 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.BorderLayout());
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lector de XML"));
         jPanel1.setLayout(new java.awt.GridLayout(3, 2));
 
@@ -129,6 +127,7 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanel1.add(jPanel2);
 
+        jtArea.setEditable(false);
         jtArea.setColumns(20);
         jtArea.setRows(5);
         jScrollPane1.setViewportView(jtArea);
@@ -147,7 +146,7 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanel1.add(jPanel4);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
