@@ -66,18 +66,13 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
     private void process() {
         Utils u = new Utils();
         
-        try {
-            if (files.isEmpty()) {
-                JOptionPane.showMessageDialog(rootPane, "No se han seleccionado "
-                        + "archivos o los archivos seleccionados no son válidos", "Error", ERROR_MESSAGE);
-                return;
-            }
-            
-            u.procesarXmls(files);
+        if (files.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No se han seleccionado "
+                    + "archivos o los archivos seleccionados no son válidos", "Error", ERROR_MESSAGE);
+            return;
         }
-        catch (JAXBException ex) {
-            Logger.getLogger(ReaderWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        u.procesarXmls(files);
     }
 
     /**

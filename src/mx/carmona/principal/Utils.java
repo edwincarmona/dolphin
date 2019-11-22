@@ -7,6 +7,8 @@ package mx.carmona.principal;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,30 +22,36 @@ import mx.sat.cfd32.Comprobante32;
  */
 public class Utils {
     
-    public void procesarXmls(ArrayList<File> files) throws JAXBException {
-        ArrayList<ExportData> data;
-        ArrayList<ExportData> allData = new ArrayList<>();
-        for (File file: files) {
-            Comprobante33 comp33 = fileToComprobante33(file);
-            Comprobante32 comp32 = null;
-            if (comp33.getVersion() != null && comp33.getVersion().equals("3.3")) {
-                data = this.comprobante33ToData(comp33);
-            }
-            else {
-                comp32 = fileToComprobante32(file);
-                
-                if (comp32.getVersion().equals("3.2")) {
-                    data = this.comprobante32ToData(comp32);
+    public void procesarXmls(ArrayList<File> files) {
+        try {
+            ArrayList<ExportData> data;
+            ArrayList<ExportData> allData = new ArrayList<>();
+            for (File file: files) {
+                Comprobante33 comp33 = fileToComprobante33(file);
+                Comprobante32 comp32 = null;
+                if (comp33.getVersion() != null && comp33.getVersion().equals("3.3")) {
+                    data = this.comprobante33ToData(comp33);
                 }
                 else {
-                    data = new ArrayList<>();
+                    comp32 = fileToComprobante32(file);
+
+                    if (comp32.getVersion().equals("3.2")) {
+                        data = this.comprobante32ToData(comp32);
+                    }
+                    else {
+                        data = new ArrayList<>();
+                    }
                 }
+
+                allData.addAll(data);
             }
-            
-            allData.addAll(data);
+
+            crearSalida(allData);
         }
-        
-        crearSalida(allData);
+        catch (JAXBException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private Comprobante33 fileToComprobante33(File file) throws JAXBException {
