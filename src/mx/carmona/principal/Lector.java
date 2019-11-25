@@ -19,14 +19,16 @@ public class Lector {
     
     public static ArrayList<ExportData> leerPorTipo(Comprobante33 comprobante, ExportData renglon) {
         CTipoDeComprobante tdc = comprobante.getTipoDeComprobante();
-        if (tdc.equals(CTipoDeComprobante.P)) {
-            return Lector.leerPago(comprobante, renglon);
-        }
-        else if (tdc.equals(CTipoDeComprobante.I) || tdc.equals(CTipoDeComprobante.E)) {
-            return Lector.leerEgreso(comprobante, renglon);
-        }
-        else if (tdc.equals(CTipoDeComprobante.N)) {
-            return Lector.leerNomina(comprobante, renglon);
+        switch (tdc) {
+            case P:
+                return Lector.leerPago(comprobante, renglon);
+            case I:
+            case E:
+                return Lector.leerEgreso(comprobante, renglon);
+            case N:
+                return Lector.leerNomina(comprobante, renglon);
+            default:
+                break;
         }
         
         return null;
@@ -155,20 +157,19 @@ public class Lector {
     }
     
     public static String getTipoComprobante(CTipoDeComprobante tcomp) {
-        if (tcomp.equals(CTipoDeComprobante.P)) {
-            return "P - Pagos";
-        }
-        else if (tcomp.equals(CTipoDeComprobante.I)) {
-            return "I - Ingreso";
-        }
-        else if (tcomp.equals(CTipoDeComprobante.E)) {
-            return "E - Egreso";
-        }
-        else if (tcomp.equals(CTipoDeComprobante.N)) {
-            return "N - Nómina";
-        }
-        else if (tcomp.equals(CTipoDeComprobante.T)) {
-            return "T - Traslado";
+        switch (tcomp) {
+            case P:
+                return "P - Pagos";
+            case I:
+                return "I - Ingreso";
+            case E:
+                return "E - Egreso";
+            case N:
+                return "N - Nómina";
+            case T:
+                return "T - Traslado";
+            default:
+                break;
         }
         
         return "";

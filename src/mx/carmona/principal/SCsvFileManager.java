@@ -82,7 +82,7 @@ public class SCsvFileManager {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getRfcReceptor());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getReceptor().replace(',', ' '));
+                fileWriter.append(renglon.getReceptor() == null ? "" : renglon.getReceptor().replace(',', ' '));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
                 fileWriter.append(COMMA_DELIMITER);
