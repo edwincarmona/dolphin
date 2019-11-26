@@ -28,6 +28,7 @@ public class ExportData  implements Cloneable{
     protected double subTotal;
     protected double descuento;
     protected double totalImpuestosTrasladados;
+    protected double totalImpuestosRetenidos;
     protected double impSaldoAnterior;
     protected double impPagado;
     protected double impSaldoInsoluto;
@@ -195,6 +196,14 @@ public class ExportData  implements Cloneable{
 
     public void setTotalImpuestosTrasladados(double totalImpuestosTrasladados) {
         this.totalImpuestosTrasladados = totalImpuestosTrasladados;
+    }
+    
+    public double getTotalImpuestosRetenidos() {
+        return totalImpuestosRetenidos;
+    }
+
+    public void setTotalImpuestosRetenidos(double totalImpuestosRetenidos) {
+        this.totalImpuestosRetenidos = totalImpuestosRetenidos;
     }
 
     public String getConcepto() {

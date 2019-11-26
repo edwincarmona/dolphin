@@ -27,7 +27,7 @@ public class SCsvFileManager {
     private static final String FILE_HEADER = "RFC del emisor,Emisor,RFC del receptor,Receptor,Fecha,"
             + "Forma de pago,Metodo de pago,CFDI Relacionados NC,Tipo de relacion,"
             + "Tipo de comprobante,Uso CFDI,UUID,SubTotal,"
-            + "Descuento,Total,Total Imptos trasladados,Concepto(cantidad-concepto-valorUnitario-importeConcepto),"
+            + "Descuento,Total,Total Imptos trasladados,Total Imptos retenidos,Concepto(cantidad-concepto-valorUnitario-importeConcepto),"
             + "CFDI Relacionado De Pago,Saldo anterior,Pagado,"
             + "Nuevo Saldo,Metodo Pago DR,Parcialidad,CFDI Relacionado,Tipo de Relacion";
 
@@ -107,6 +107,8 @@ public class SCsvFileManager {
                 fileWriter.append(monto.format(renglon.getTotal()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(monto.format(renglon.getTotalImpuestosTrasladados()));
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(monto.format(renglon.getTotalImpuestosRetenidos()));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getConcepto().replace(',', ' '));
                 fileWriter.append(COMMA_DELIMITER);

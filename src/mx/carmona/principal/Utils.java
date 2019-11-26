@@ -90,6 +90,9 @@ public class Utils {
         renglon.setTotalImpuestosTrasladados(comprobante.getImpuestos() == null 
                                                 ? 0d :
                                                 comprobante.getImpuestos().getTotalImpuestosTrasladados() == null ? 0d : comprobante.getImpuestos().getTotalImpuestosTrasladados().doubleValue());
+        renglon.setTotalImpuestosRetenidos(comprobante.getImpuestos() == null 
+                                                ? 0d :
+                                                comprobante.getImpuestos().getTotalImpuestosRetenidos() == null ? 0d : comprobante.getImpuestos().getTotalImpuestosRetenidos().doubleValue());
         renglon.setUsoCfdi(comprobante.getReceptor().getUsoCFDI().value());
         
         data = Lector.leerPorTipo(comprobante, renglon);
@@ -106,8 +109,11 @@ public class Utils {
         renglon.setMetodoDePago(comprobante.getMetodoDePago());
         renglon.setTotal(comprobante.getTotal().doubleValue());
         renglon.setTotalImpuestosTrasladados(comprobante.getImpuestos() == null 
-                                                ? 0d :
-                                                comprobante.getImpuestos().getTotalImpuestosTrasladados().doubleValue());
+                                            ? 0d :
+                                            comprobante.getImpuestos().getTotalImpuestosTrasladados().doubleValue());
+        renglon.setTotalImpuestosRetenidos(comprobante.getImpuestos() == null 
+                                            ? 0d :
+                                            comprobante.getImpuestos().getTotalImpuestosRetenidos() == null ? 0d : comprobante.getImpuestos().getTotalImpuestosRetenidos().doubleValue());
         renglon.setUsoCfdi("--");
         renglon.setUuid(comprobante.getComplemento() == null ? "" : comprobante.getComplemento().getAny().get(0).toString());
         
