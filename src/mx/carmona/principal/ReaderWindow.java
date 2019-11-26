@@ -104,6 +104,7 @@ public class ReaderWindow extends javax.swing.JFrame implements ActionListener {
         jLabel12 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lector de XML"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(560, 400));
         jPanel1.setLayout(new java.awt.GridLayout(3, 2));
 
         jPanel2.setLayout(new java.awt.GridLayout(3, 2));
