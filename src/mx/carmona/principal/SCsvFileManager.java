@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import static java.nio.charset.StandardCharsets.*;
 
 /**
  *
@@ -74,15 +75,24 @@ public class SCsvFileManager {
 
             //Write a new Ingredient object list to the CSV file
             
+            String emisor;
+            String receptor;
+            String text;
+            
             for (ExportData renglon : lAtributos) {
 //                RfcEmisor,RfcReceptor,Fecha,MétodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto
                 fileWriter.append(renglon.getRfcEmisor());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getEmisor().replace(',', ' '));
+                text = renglon.getEmisor().toUpperCase().replace(',', ' ');
+                emisor = new String(text.getBytes(ISO_8859_1), UTF_8);
+                fileWriter.append(emisor);
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getRfcReceptor());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getReceptor() == null ? "" : renglon.getReceptor().replace(',', ' '));
+                text = renglon.getReceptor().toUpperCase().replace(',', ' ');
+                receptor = new String(text.getBytes(ISO_8859_1), UTF_8);
+                fileWriter.append(receptor);
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
                 fileWriter.append(COMMA_DELIMITER);
