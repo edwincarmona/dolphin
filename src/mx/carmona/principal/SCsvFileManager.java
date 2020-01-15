@@ -6,9 +6,14 @@
 package mx.carmona.principal;
 
 import java.awt.HeadlessException;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
@@ -34,7 +39,7 @@ public class SCsvFileManager {
 
     public static String writeCsvFile(ArrayList<ExportData> lAtributos) {
         String sResult = "";
-        FileWriter fileWriter = null;
+        Writer fileWriter = null;
         DecimalFormat cantidad = new DecimalFormat("##.000");
         DecimalFormat monto = new DecimalFormat("##.00");
         int iSelection = -1;
@@ -65,7 +70,7 @@ public class SCsvFileManager {
                 }
             }
             
-            fileWriter = new FileWriter(fileName);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "8859_1"));
 
             //Write the CSV file header
             fileWriter.append(FILE_HEADER);
@@ -83,15 +88,12 @@ public class SCsvFileManager {
 //                RfcEmisor,RfcReceptor,Fecha,MétodoPago,Uso,UUID,Total,TotalImptras,concepto,importeConcepto
                 fileWriter.append(renglon.getRfcEmisor());
                 fileWriter.append(COMMA_DELIMITER);
-                text = renglon.getEmisor().toUpperCase().replace(',', ' ');
-                emisor = new String(text.getBytes(ISO_8859_1), UTF_8);
+                emisor = renglon.getEmisor().toUpperCase().replace(',', ' ');
                 fileWriter.append(emisor);
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getRfcReceptor());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getReceptor() == null ? "" : renglon.getReceptor().replace(',', ' '));
-                text = renglon.getReceptor().toUpperCase().replace(',', ' ');
-                receptor = new String(text.getBytes(ISO_8859_1), UTF_8);
+                receptor = renglon.getReceptor() == null ? "" : renglon.getReceptor().toUpperCase().replace(',', ' ');
                 fileWriter.append(receptor);
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getFecha());
