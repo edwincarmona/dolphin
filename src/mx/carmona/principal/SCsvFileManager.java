@@ -122,7 +122,7 @@ public class SCsvFileManager {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(monto.format(renglon.getTotalImpuestosRetenidos()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(renglon.getConcepto().replace(',', ' '));
+                fileWriter.append(renglon.getConcepto().replaceAll(",", " ").replaceAll("\n", " ").replaceAll("\r", " "));
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(renglon.getUuidRelacionado());
                 fileWriter.append(COMMA_DELIMITER);
